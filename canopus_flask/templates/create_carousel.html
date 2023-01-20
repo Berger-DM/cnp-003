@@ -1,0 +1,57 @@
+{% extends 'layouts.html' %}
+
+{% block createCarousel %}
+    <div class="createCarousel align-self-center">
+        <div class="container w-100 h-100 align-self-center">
+            <div class="card text-bg-dark text-center" style="width: 60vw; align-self: center">
+                <div class="card-header text-center">
+                    <h2>Create New Carousel</h2>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <form method="POST" action="" enctype="multipart/form-data">
+                            {{ form.hidden_tag() }}
+                            <div class="form-group">
+                                {{ form.carousel_name.label(class="form-control-label form") }}
+                                {% if form.carousel_name.errors %}
+                                    {{ form.carousel_name(class="form-control form-control-lg is-invalid") }}
+                                    {% for error in form.carousel_name.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                {% else %}
+                                    {{ form.carousel_name(class="form-control form-control-md") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.first_carousel_image.label(class="form-control-label") }}
+                                {{ form.first_carousel_image(class="form-control-file") }}
+                                {% if form.first_carousel_image.errors %}
+                                    {% for error in form.first_carousel_image.errors %}
+                                        <span class="text-danger">{{ error }}</span>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.first_image_caption.label(class="form-control-label form") }}
+                                {% if form.first_image_caption.errors %}
+                                    {{ form.first_image_caption(class="form-control is-invalid") }}
+                                    {% for error in form.first_image_caption.errors %}
+                                        <span>{{ error }}</span>
+                                        {{ print(error) }}
+                                    {% endfor %}
+                                {% else %}
+                                    {{ form.first_image_caption(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.submit_carousel(class="btn btn-online-info btn-success") }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock createCarousel %}

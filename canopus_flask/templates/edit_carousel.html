@@ -1,0 +1,29 @@
+{% extends 'layouts.html' %}
+
+{% block editCarousel %}
+    <div class="container-fluid">
+        <form action="">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+            </div>
+        </form>
+    </div>
+{% endblock editCarousel %}
+
+{% block addImage %}
+    <div class="container-fluid">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.image.label() }}
+                {{ form.image(class="form-control-file") }}
+                {% if form.image.errors %}
+                    {% for error in form.image.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+{% endblock addImage %}

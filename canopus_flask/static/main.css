@@ -1,0 +1,45 @@
+.contentA {
+    background-color: darkslateblue;
+}
+
+.carousel-inner > .carousel-item > img {
+    width: auto;
+    height: 75vh;
+    object-fit: contain;
+}
+
+@media screen and (orientation: portrait) {
+    .form-control-label {
+        font-size: 30px;
+    }
+
+    legend {
+        font-size: 36px;
+    }
+
+    .form-control {
+        font-size: 24px;
+    }
+
+    .btn {
+        font-size: 36px;
+    }
+
+    .navbar-brand {
+        font-size: 36px;
+    }
+
+    .nav-link {
+        font-size: 30px;
+    }
+
+    .carousel-caption {
+        font-size: 36px;
+    }
+
+    .carousel-inner > .carousel-item > img {
+    width: 90vw;
+    height: auto;
+    object-fit: contain;
+}
+}
