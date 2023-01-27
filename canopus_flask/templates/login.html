@@ -2,12 +2,12 @@
 
 {% block contentD %}
     <div class="contentC align-self-center">
-        <div class="container w-75">
-            <div class="card text-center mb-3">
-                <div class="card-header">
+        <div class="container-fluid">
+            <div class="card text-center mb-3"  style="max-width: 100vw; align-self: center">
+                <div class="card-header text-bg-dark">
                     <h1>Login</h1>
                 </div>
-                <div class="card-body">
+                <div class="card-body text-bg-secondary">
                     <form method="POST" action="">
                         {{ form.hidden_tag() }}
                         <fieldset>
@@ -34,6 +34,7 @@
                                 {% endif %}
                             </div>
                         </fieldset>
+                        <br>
                         <div class="form-group">
                             {{ form.submit(class="btn btn-online-info btn-dark") }}
                         </div>

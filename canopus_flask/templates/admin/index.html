@@ -1,0 +1,10 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+    <form method="POST" action="{{ url_for('homepage') }}">
+        <button type="submit" class="" name="go_home"
+                value="go_home">
+            Return to Main Page
+        </button>
+    </form>
+{% endblock %}

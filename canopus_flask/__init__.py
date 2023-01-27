@@ -2,17 +2,22 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+from flask_admin import Admin
 
-app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'secretkey'
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///canopusflask.db"
-#
+application = Flask(__name__)
 
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
+application.config['SECRET_KEY'] = 'secretkey'
+application.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///canopusflask.db"
+application.config['UPLOAD_FOLDER'] = '.\\static\\images'
+application.config['FLASK_ADMIN_SWATCH'] = 'darkly'
 
-app.app_context().push()
+db = SQLAlchemy(application)
+bcrypt = Bcrypt(application)
+login_manager = LoginManager()
+admin_manager = Admin(application, template_mode='bootstrap3')
+
+application.app_context().push()
+login_manager.init_app(application)
 
 from canopus_flask import routes

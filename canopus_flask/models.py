@@ -5,11 +5,6 @@ from sqlalchemy.dialects.sqlite import BLOB
 from datetime import datetime
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(user_id)
-
-
 class User(db.Model, UserMixin):
     __tablename__ = "user"
 
@@ -18,6 +13,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(20), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    is_admin = db.Column(db.Integer, default=False)
 
     def __repr__(self):
         return f'{self.username} : {self.email} : {self.date_created}'
@@ -45,3 +41,10 @@ class Image(db.Model):
 
     def __repr__(self):
         return f'{self.image_file} : {self.carousel_id}'
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    print("User_id: ", user_id)
+    expected_result = User.query.get(user_id)
+    return expected_result

@@ -1,6 +1,19 @@
 import os
-from canopus_flask import app, bcrypt
-from PySide2.QtGui import QPixmap
+from canopus_flask import application as app, bcrypt
+
+
+class ImageCombo:
+    def __init__(self, img_name: str, img_id: int, img_cap: str):
+        self.image_name = img_name
+        self.image_id = img_id
+        self.image_caption = img_cap
+
+
+class CarouselCombo:
+    def __init__(self, carousel_name: str, carousel_id: int, img_list: list()):
+        self.carousel_name = carousel_name
+        self.carousel_id = carousel_id
+        self.image_list = img_list
 
 
 def encrypt_password(password):
@@ -14,15 +27,11 @@ def check_password(db_pass, input_pass):
 def save_image(image_to_save):
     image_name = image_to_save.filename
     image_path = os.path.join(app.root_path, 'static/images', image_name)
-    image_to_save.save(image_path)
+    if not os.path.exists(image_path):
+        image_to_save.save(image_path)
     return image_name
 
 
-def convert_image(image, image_name):
-    print("Print at the start of convert_image")
-    pixmap = QPixmap()
-    extension = image_name.split(".")[-1]
-    print(extension)
-    pixmap.loadFromData(image, extension)
-    print("Print before return of convert_image")
-    return pixmap
+def load_image(image_name):
+    print(app.root_path)
+    return os.path.join(app.root_path, 'static/images', image_name)
